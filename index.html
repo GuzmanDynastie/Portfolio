@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio | Desarrollador Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-default {
+                @apply transition-all duration-300 ease-in-out;
+            }
+            .nav-link::after {
+                content: '';
+                @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 dark:bg-primary-400 transition-all duration-300;
+            }
+            .nav-link:hover::after, .nav-link.active::after {
+                @apply w-full;
+            }
+            .custom-scrollbar {
+                scrollbar-width: thin;
+                scrollbar-color: theme('colors.primary.500') theme('colors.gray.200');
+            }
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 8px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                @apply bg-gray-200 dark:bg-gray-800;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                @apply bg-primary-500 dark:bg-primary-600 rounded-full;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 custom-scrollbar">
+    <!-- Header y Navegación -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-gray-900/95 shadow-md transition-default">
+        <div class="container mx-auto px-4 py-4 md:py-3 flex justify-between items-center">
+            <div class="logo">
+                <a href="#inicio" class="text-2xl font-bold">Dev<span
+                        class="text-primary-500 dark:text-primary-400">Portfolio</span></a>
+            </div>
+            <nav class="flex items-center">
+                <ul id="menu" class="hidden md:flex space-x-8">
+                    <li><a href="#inicio"
+                            class="nav-link active font-medium relative py-1 transition-default">Inicio</a></li>
+                    <li><a href="#sobre-mi" class="nav-link font-medium relative py-1 transition-default">Sobre mí</a>
+                    </li>
+                    <li><a href="#proyectos" class="nav-link font-medium relative py-1 transition-default">Proyectos</a>
+                    </li>
+                    <li><a href="#habilidades"
+                            class="nav-link font-medium relative py-1 transition-default">Habilidades</a></li>
+                    <li><a href="#contacto" class="nav-link font-medium relative py-1 transition-default">Contacto</a>
+                    </li>
+                </ul>
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle"
+                    class="ml-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 transition-default hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block text-yellow-500" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                            fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden text-gray-800" fill="currentColor"
+                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                <!-- Hamburger Menu -->
+                <div id="hamburger" class="md:hidden ml-4 cursor-pointer flex flex-col justify-between w-7 h-5">
+                    <span class="w-full h-0.5 bg-gray-800 dark:bg-gray-200 transition-default"></span>
+                    <span class="w-full h-0.5 bg-gray-800 dark:bg-gray-200 transition-default"></span>
+                    <span class="w-full h-0.5 bg-gray-800 dark:bg-gray-200 transition-default"></span>
+                </div>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="md:hidden fixed top-[60px] left-0 w-full h-0 overflow-hidden bg-white dark:bg-gray-900 shadow-lg transition-all duration-300 ease-in-out">
+            <ul class="flex flex-col items-center py-8 space-y-6">
+                <li><a href="#inicio" class="mobile-nav-link text-lg font-medium">Inicio</a></li>
+                <li><a href="#sobre-mi" class="mobile-nav-link text-lg font-medium">Sobre mí</a></li>
+                <li><a href="#proyectos" class="mobile-nav-link text-lg font-medium">Proyectos</a></li>
+                <li><a href="#habilidades" class="mobile-nav-link text-lg font-medium">Habilidades</a></li>
+                <li><a href="#contacto" class="mobile-nav-link text-lg font-medium">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Sección Inicio -->
+    <section id="inicio" class="min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between">
+                <div class="text-center md:text-left md:w-1/2 mt-10 md:mt-0 md:pr-10 animate-fade-in">
+                    <div class="inline-block px-4 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 mb-4">
+                        <span class="text-sm font-medium text-primary-800 dark:text-primary-300">I build cool stuff!
+                            🖖👽</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2 leading-tight">
+                        Hola, soy <span class="text-primary-500 dark:text-primary-400">Jesus Emmanuel Guzman
+                            Covarrubias</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-medium mb-6 text-gray-600 dark:text-gray-400">
+                        <span id="typed-text">Apasionado por el Backend</span><span class="typed-cursor">|</span>
+                    </h2>
+                    <p class="text-xl mb-8 text-gray-600 dark:text-gray-400 max-w-lg">
+                        "Programar una vez, compilar donde sea."
+                    </p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                        <a href="#proyectos"
+                            class="px-8 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-medium transition-default shadow-md hover:shadow-lg">
+                            Ver Proyectos
+                        </a>
+                        <a href="#contacto"
+                            class="px-8 py-3 rounded-lg border-2 border-primary-500 dark:border-primary-400 text-primary-600 dark:text-primary-400 font-medium hover:bg-primary-50 dark:hover:bg-gray-800 transition-default">
+                            Contactar
+                        </a>
+                    </div>
+
+                    <div class="mt-12 flex items-center justify-center md:justify-start space-x-4">
+                        <a href="https://github.com/GuzmanDynastie" target="_blank"
+                            class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-default">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jesus-emmanuel-guzman-covarrubias-753150168/" target="_blank"
+                            class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-default">
+                            <i class="fab fa-linkedin-in text-2xl"></i>
+                        </a>
+                        <a href="https://g.dev/GuzmanDynastie" target="_blank"
+                            class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-default">
+                            <i class="fab fa-brands fa-google text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-xl opacity-70 animate-pulse">
+                        </div>
+                        <div
+                            class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl relative z-10">
+                            <img src="assets/images/IMG_8354.png" alt="Foto de perfil"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+            <a href="#sobre-mi"
+                class="text-2xl text-primary-500 dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-500 transition-default">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Mí -->
+    <section id="sobre-mi" class="py-20 bg-white dark:bg-gray-800 transition-default">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal-element">
+                <span
+                    class="inline-block px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-sm font-medium mb-4">Sobre
+                    Mí</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mi Historia</h2>
+                <div class="h-1 w-20 bg-primary-500 dark:bg-primary-400 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-2/5 reveal-element" data-delay="200">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-primary-500/20 rounded-2xl blur-xl opacity-50 animate-pulse">
+                        </div>
+                        <div class="relative bg-white dark:bg-gray-700 rounded-2xl overflow-hidden p-4 shadow-lg z-10">
+                            <img src="assets/images/IMG_6162.jpg" alt="Sobre mí" class="w-full h-auto rounded-xl">
+                            <!-- Etiquetas flotantes -->
+                            <div
+                                class="absolute top-8 -left-1 bg-white dark:bg-gray-700 px-4 py-2 rounded-lg shadow-lg">
+                                <span class="text-primary-500 dark:text-primary-400 font-bold">+2 años</span>
+                                <span class="block text-sm">Experiencia</span>
+                            </div>
+                            <div
+                                class="absolute bottom-8 -right-1 bg-white dark:bg-gray-700 px-4 py-2 rounded-lg shadow-lg">
+                                <span class="text-primary-500 dark:text-primary-400 font-bold">+10</span>
+                                <span class="block text-sm">Proyectos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-3/5 reveal-element" data-delay="400">
+                    <h3 class="text-2xl font-bold mb-4">Desarrollador enfocado en construir soluciones tecnológicas que
+                        impacten positivamente</h3>
+                    <p class="text-lg mb-6 text-gray-600 dark:text-gray-400">
+                        Soy un programador con enfoque en backend y pasión por crear sistemas robustos, escalables y bien estructurados. Me gusta diseñar la lógica que hace funcionar las aplicaciones y resolver problemas reales con soluciones eficientes.
+                    </p>
+                    <p class="text-lg mb-8 text-gray-600 dark:text-gray-400">
+                        Siempre estoy buscando aprender más, especialmente en el camino hacia el fullstack, y disfruto colaborar en proyectos que me reten a seguir creciendo.
+                    </p>
+
+                    <!-- Timeline -->
+                    <div
+                        class="mt-10 space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-primary-200 dark:before:bg-primary-900">
+                        <!-- Item 1 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-primary-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                <i class="fas fa-graduation-cap text-white"></i>
+                            </div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+                                <div class="font-bold text-primary-500 dark:text-primary-400">2021 - Presente</div>
+                                <div class="font-semibold">Ing. en Computacion</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Universidad de Especialidades -
+                                    UNE</div>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-primary-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                <i class="fas fa-briefcase text-white"></i>
+                            </div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+                                <div class="font-bold text-primary-500 dark:text-primary-400">2024 - 2024 (6 meses)
+                                </div>
+                                <div class="font-semibold">Aux. Sistemas - CUCSH</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">
+                                    Cuento con experiencia en atención a usuarios finales y resolución de tickets de
+                                    soporte, logrando optimizar tiempos de respuesta. He realizado mantenimiento técnico
+                                    de equipos de cómputo e impresoras, incluyendo diagnóstico, actualización de
+                                    hardware y configuración de software. Además, he gestionado inventarios de equipos,
+                                    llevado a cabo mantenimiento preventivo y participado en el ensamblaje de equipos y
+                                    terminación de cableado ethernet.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-primary-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                                <i class="fas fa-book text-white"></i>
+                            </div>
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+                                <div class="font-bold text-primary-500 dark:text-primary-400">2022 - Actualmente</div>
+                                <div class="font-semibold">Proyectos</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">
+                                    He desarrollado diversos prototipos, incluyendo un sistema integral de gestión
+                                    escolar basado en microservicios con Node.js, notificaciones en tiempo real
+                                    (RabbitMQ y WebSocket) y control de subredes por VLAN (SIGE); una tienda de
+                                    autoservicio en línea con integración de IBM Watsonx para optimizar la experiencia
+                                    de compra de alimentos para mascotas (NutriPet Healthy); y una aplicación de
+                                    escritorio para la gestión eficiente de una veterinaria, con interfaz intuitiva y
+                                    fácil de usar (ArchiVet).
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-7 gap-8 reveal-element" data-delay="600">
+                <div class="flex flex-col items-center group">
+                    <i
+                        class="fab fa-java text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                    <span class="font-medium">Java</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <i
+                        class="fab fa-docker text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                    <span class="font-medium">Docker</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <i
+                        class="fab fa-js text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                    <span class="font-medium">JavaScript</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <i
+                        class="fab fa-react text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                    <span class="font-medium">React</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <i
+                        class="fab fa-node-js text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                    <span class="font-medium">Node.js</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <i
+                        class="fab fa-git-alt text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                    <span class="font-medium">Git</span>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <i
+                        class="fab fa-github text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                    <span class="font-medium">GitHub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Proyectos -->
+    <section id="proyectos" class="py-20 bg-gray-50 dark:bg-gray-900 transition-default">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal-element">
+                <span
+                    class="inline-block px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-sm font-medium mb-4">Mis
+                    Proyectos</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Trabajos Destacados</h2>
+                <div class="h-1 w-20 bg-primary-500 dark:bg-primary-400 mx-auto"></div>
+            </div>
+
+            <!-- Filtros de proyectos -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal-element" data-delay="200">
+                <button
+                    class="filter-btn active px-4 py-2 rounded-lg bg-white dark:bg-gray-800 shadow hover:shadow-md transition-default"
+                    data-filter="all">Todos</button>
+                <button
+                    class="filter-btn px-4 py-2 rounded-lg bg-white dark:bg-gray-800 shadow hover:shadow-md transition-default"
+                    data-filter="web">Web</button>
+                <button
+                    class="filter-btn px-4 py-2 rounded-lg bg-white dark:bg-gray-800 shadow hover:shadow-md transition-default"
+                    data-filter="app">Desktop</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 project-container">
+                <!-- Proyecto 1 -->
+                <div class="project-item web reveal-element" data-delay="300">
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg group hover:-translate-y-2 transition-default">
+                        <div class="relative">
+                            <img src="assets/images/NutriPet Healthy.jpeg" alt="Proyecto 1"
+                                class="w-full h-60 object-cover transition-default group-hover:scale-105">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-default flex items-end">
+                                <div class="p-6 w-full">
+                                    <div class="flex gap-3 mb-2">
+                                        <a href="https://github.com/GuzmanDynastie/Proyecto-WEB"
+                                            class="px-3 py-1 rounded-lg bg-white/20 backdrop-blur-sm text-white text-sm font-medium transition-default"
+                                            target="_blank">
+                                            <i class="fab fa-github mr-1"></i> Código
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-2xl font-bold mb-2 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-default">
+                                NutriPet Healthy</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Prototipo de una tienda de autoservicio en línea con la integración de IBM
+                                Watsonx para mejorar la experiencia de compras en alimentos para las
+                                mascotas.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Handlebars</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Node.js</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">JavaScript</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">JWT</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">IBM Cloud</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">IBM Watsonx</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">MongoDB</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Render</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="project-item app reveal-element" data-delay="400">
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg group hover:-translate-y-2 transition-default">
+                        <div class="relative">
+                            <img src="assets/images/archivet.png" alt="Proyecto 2"
+                                class="w-full h-60 object-cover transition-default group-hover:scale-105">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-default flex items-end">
+                                <div class="p-6 w-full">
+                                    <div class="flex gap-3 mb-2">
+                                        <a href="https://github.com/GuzmanDynastie/ArchiVet"
+                                            class="px-3 py-1 rounded-lg bg-white/20 backdrop-blur-sm text-white text-sm font-medium transition-default"
+                                            target="_blank">
+                                            <i class="fab fa-github mr-1"></i> Código
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-2xl font-bold mb-2 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-default">
+                                ArchiVet</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Prototipo de aplicación de escritorio para la gestión de una veterinaria con
+                                interfaz amigable, intuitiva y fácil de utilizar para el personal de la misma.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Java</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="project-item web ui reveal-element" data-delay="500">
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg group hover:-translate-y-2 transition-default">
+                        <div class="relative">
+                            <img src="assets/images/SIGE.png" alt="Proyecto 3"
+                                class="w-full h-60 object-cover transition-default group-hover:scale-105">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-default flex items-end">
+                                <div class="p-6 w-full">
+                                    <div class="flex gap-3 mb-2">
+                                        <a href="https://github.com/GzmDynastie/SIGE-app-web"
+                                            class="px-3 py-1 rounded-lg bg-white/20 backdrop-blur-sm text-white text-sm font-medium transition-default"
+                                            target="_blank">
+                                            <i class="fab fa-github mr-1"></i> Código
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3
+                                class="text-2xl font-bold mb-2 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-default">
+                                SIGE</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Prototipo de sistema integral para la gestión escolar con microservicios en
+                                Node.js, notificaciones en tiempo real con RabbitMQ y WebSocket, y control de
+                                subredes e IPs por VLAN.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">React</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Bootstrap</span>
+                                <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Node.js</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">PostgreSQL</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">JWT</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">JavaScript</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">TypeScript</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Micro services</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Docker</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Websockets</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Cloudinary</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">RabbitMQ</span>
+                                    <span
+                                    class="px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300">Railway</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón Ver Más Proyectos -->
+                <div class="text-center mt-12 reveal-element" data-delay="700">
+                    <a href="https://github.com/GuzmanDynastie"
+                        class="inline-flex items-center px-6 py-3 rounded-lg border-2 border-primary-500 dark:border-primary-400 text-primary-600 dark:text-primary-400 font-medium hover:bg-primary-50 dark:hover:bg-gray-800 transition-default">
+                        Ver Más Proyectos <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+    </section>
+
+    <!-- Sección Habilidades -->
+    <section id="habilidades" class="py-20 bg-white dark:bg-gray-800 transition-default">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal-element">
+                <span
+                    class="inline-block px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-sm font-medium mb-4">Mis
+                    Habilidades</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tecnologías y Herramientas</h2>
+                <div class="h-1 w-20 bg-primary-500 dark:bg-primary-400 mx-auto"></div>
+            </div>
+
+            <!-- Herramientas y Otras Habilidades -->
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg reveal-element" data-delay="600">
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fab fa-git-alt text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Git</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fab fa-github text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">GitHub</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fab fa-docker text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Docker</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fab fa-figma text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Figma</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-terminal text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Terminal</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-code-branch text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">CI/CD</span>
+                    </div>
+
+
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-brands fa-linux text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Linux</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-brands fa-windows text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Windows</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-brands fa-apple text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Mac OS</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-solid fa-database text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Database</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-solid fa-cloud text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Services IBM / Google</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <i
+                            class="fas fa-solid fa-screwdriver-wrench text-5xl text-primary-500 dark:text-primary-400 mb-3 group-hover:-translate-y-2 transition-default"></i>
+                        <span class="font-medium">Troubleshoot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="py-20 bg-white dark:bg-gray-800 transition-default">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal-element">
+                <span
+                    class="inline-block px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 text-sm font-medium mb-4">Contacto</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">¡Hablemos!</h2>
+                <div class="h-1 w-20 bg-primary-500 dark:bg-primary-400 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="reveal-element" data-delay="200">
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6">Información de Contacto</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-8">
+                            Soy un programador apasionado por el backend y el área de sistemas, siempre buscando mejorar procesos y crear soluciones funcionales. Actualmente, también me interesa seguir creciendo como desarrollador fullstack. Si tienes un proyecto desafiante, será un gusto colaborar contigo.
+                        </p>
+
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-center group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mr-4 group-hover:scale-110 transition-default">
+                                    <i class="fas fa-envelope text-xl text-primary-500 dark:text-primary-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <a href="mailto:tucorreo@ejemplo.com"
+                                        class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-default">GuzmanOficial@outlook.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mr-4 group-hover:scale-110 transition-default">
+                                    <i class="fas fa-phone text-xl text-primary-500 dark:text-primary-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Teléfono</h4>
+                                    <a href="tel:+123456789"
+                                        class="text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-default">+52
+                                        33 1151 1165</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center group">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mr-4 group-hover:scale-110 transition-default">
+                                    <i class="fas fa-map-marker-alt text-xl text-primary-500 dark:text-primary-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Ubicación</h4>
+                                    <span class="text-gray-600 dark:text-gray-400">Guadalajara, Jal. Mexico</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-4 mb-8">
+                            <a href="https://github.com/GuzmanDynastie" target="_blank"
+                                class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 dark:text-primary-400 hover:scale-110 transition-default">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/jesus-emmanuel-guzman-covarrubias-753150168/" target="_blank"
+                                class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 dark:text-primary-400 hover:scale-110 transition-default">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                            <a href="https://g.dev/GuzmanDynastie" target="_blank"
+                                class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-500 dark:text-primary-400 hover:scale-110 transition-default">
+                                <i class="fab fa-brands fa-google text-xl"></i>
+                            </a>
+                        </div>
+
+                        <a href="https://drive.google.com/file/d/1AnMQ9QsVDmakGVLeU9oncTDEj02nSfus/view?usp=sharing" download
+                            class="inline-flex items-center px-6 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-medium transition-default shadow-md hover:shadow-lg">
+                            <i class="fas fa-download mr-2"></i> Descargar CV
+                        </a>
+                    </div>
+                </div>
+
+                <div class="reveal-element" data-delay="400">
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6">Envíame un Mensaje</h3>
+                        <form id="form-contact">
+                            <div class="mb-6">
+                                <label for="name" class="block text-sm font-medium mb-2">Nombre</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-white">
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-sm font-medium mb-2">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-white">
+                            </div>
+                            <div class="mb-6">
+                                <label for="subject" class="block text-sm font-medium mb-2">Asunto</label>
+                                <input type="text" id="subject" name="subject" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-white">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-sm font-medium mb-2">Mensaje</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-white"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full px-6 py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-medium transition-default shadow-md hover:shadow-lg">
+                                Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-800 dark:bg-gray-900 text-white transition-default">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#inicio" class="text-2xl font-bold">Dev<span class="text-primary-400">Portfolio</span></a>
+                    <p class="mt-2 text-gray-300">&copy; 2025 By Guzman Dynastie. Todos los derechos reservados.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#inicio" class="hover:text-primary-400 transition-default">Inicio</a>
+                    <a href="#sobre-mi" class="hover:text-primary-400 transition-default">Sobre mí</a>
+                    <a href="#proyectos" class="hover:text-primary-400 transition-default">Proyectos</a>
+                    <a href="#habilidades" class="hover:text-primary-400 transition-default">Habilidades</a>
+                    <a href="#contacto" class="hover:text-primary-400 transition-default">Contacto</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400 text-sm">
+                <p>Diseñado y desarrollado con <i class="fas fa-heart text-red-500"></i> y mucho <i
+                        class="fas fa-coffee text-yellow-700"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <button id="back-to-top"
+        class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary-500 flex items-center justify-center text-white opacity-0 invisible transition-all duration-300 hover:bg-primary-600 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

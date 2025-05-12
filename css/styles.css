@@ -525,45 +525,6 @@ header .container {
   gap: 10px;
 }
 
-.contact-form {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: 1rem;
-  transition: var(--transition);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
-}
-
-.contact-form button {
-  width: 100%;
-}
-
 /* Footer */
 footer {
   background-color: var(--dark-color);

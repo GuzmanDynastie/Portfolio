@@ -267,8 +267,6 @@ if (contactForm) {
       return
     }
 
-    // Aquí iría el código para enviar el formulario
-    // Como es un ejemplo, solo mostramos un mensaje de éxito
     alert("¡Mensaje enviado con éxito! Te responderé lo antes posible.")
     contactForm.reset()
   })

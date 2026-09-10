@@ -185,8 +185,8 @@ function typeEffect() {
   const typedTextElement = document.getElementById("typed-text")
   const texts = [
     "Desarrollador Web Full Stack",
-    "Apasionado por el Backend",
-    "Creador de Soluciones Tecnológicas"
+    "Creador de Soluciones Tecnológicas",
+    "Ingeniero de Soporte L2",
   ];
   let textIndex = 0
   let charIndex = 0
